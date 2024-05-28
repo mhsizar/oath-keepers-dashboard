@@ -3,14 +3,14 @@ import pandas as pd
 from pandas import json_normalize
 
 # Load the JSON file
-with open('data/messages.json', 'r') as f:
+with open('data/messages.json', 'r', encoding='utf8') as f:
     data = json.load(f)
 
 # Normalize the top level JSON structure
 df = json_normalize(data)
 
-# Normalize the nested JSON structure
 def normalize_nested_json(df, column_name):
+    '''Normalize the nested JSON structure in the specified column of the dataframe'''
     records = []
     for record in df[column_name].dropna():
         if isinstance(record, str):
